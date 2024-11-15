@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:gym_app/firebase_options.dart';
 import 'login_screen.dart';
 import 'globals.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadData();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -16,20 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Academia App',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor:
-                Colors.deepPurple, // Corrigido de primary para backgroundColor
-            foregroundColor:
-                Colors.white, // Corrigido de onPrimary para foregroundColor
-            textStyle: const TextStyle(fontSize: 16),
-          ),
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          border: OutlineInputBorder(),
-        ),
+        primarySwatch: Colors.blue,
       ),
       home: const LoginScreen(),
     );
